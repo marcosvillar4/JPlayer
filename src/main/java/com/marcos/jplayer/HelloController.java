@@ -4,30 +4,30 @@ package com.marcos.jplayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import com.marcos.jplayer.modulos.miscFunc;
+import javafx.scene.image.ImageView;
 
 import java.io.File;
 
 
 public class HelloController {
+
+
+    public Label artist;
+    public Label title;
+    public Label album;
     @FXML
-    private Label welcomeText;
+    private ImageView cover;
     miscFunc func = new miscFunc();
 
     @FXML
     protected void onHelloButtonClick() {
-
-        File audioFile = func.fileChooser(false, welcomeText.getScene().getWindow());
-        //System.out.println(Arrays.toString(audioFile.list()));
+        title.setText("");
+        File audioFile = func.fileChooser(false, title.getScene().getWindow());
         if (audioFile != null) {
             func.audioPlayer(audioFile);
-            System.out.println("AAAAAAAAA");
+            func.displayMetadata(cover, artist, title, album);
         }
-        welcomeText.setText("Welcome to JavaFX Application!");
-
-
-
     }
-
     public void audioPause() {
         func.playPause();
     }

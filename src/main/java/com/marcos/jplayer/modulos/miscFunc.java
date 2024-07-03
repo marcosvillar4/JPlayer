@@ -1,7 +1,12 @@
 package com.marcos.jplayer.modulos;
 
+import javafx.collections.MapChangeListener;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -11,20 +16,55 @@ import java.io.File;
 public class miscFunc {
 
     MediaPlayer mediaPlayer;
+    MediaView mediaView;
+    Media media;
     boolean paused;
     boolean fileLoaded;
 
     public void audioPlayer(File audioFile){
 
-        Media media = new Media(audioFile.toURI().toString());
-        if (this.mediaPlayer != null){
-            mediaPlayer.dispose();
-        }
+        media = new Media(audioFile.toURI().toString());
+        killAudio();
         mediaPlayer = new MediaPlayer(media);
+        mediaView = new MediaView();
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.play();
         paused = false;
         fileLoaded = true;
+
+    }
+
+    public void killAudio(){
+        if (this.mediaPlayer != null){
+            mediaPlayer.dispose();
+        }
+    }
+
+    public void displayMetadata(ImageView cover, Label t, Label a, Label album){
+        if (media != null){
+
+            media.getMetadata().addListener((MapChangeListener<String,Object>) change-> {
+
+
+                if (change.getMap().get("title") != null) {
+                    t.setText((String) change.getMap().get("title"));
+                }
+                if (change.getMap().get("artist") != null) {
+                    a.setText((String) change.getMap().get("artist"));
+                }
+
+                if (change.getMap().get("image") != null) {
+                    cover.setImage((Image) change.getMap().get("image"));
+                }
+
+                if (change.getMap().get("album") != null) {
+                    album.setText((String) change.getMap().get("album"));
+                }
+
+                System.out.println(change);
+
+            });
+        }
     }
 
     public File fileChooser(Boolean folder, Window parent) {
