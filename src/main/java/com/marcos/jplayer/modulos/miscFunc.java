@@ -55,6 +55,8 @@ public class miscFunc {
 
                 if (change.getMap().get("image") != null) {
                     cover.setImage((Image) change.getMap().get("image"));
+                    cover.setX(300);
+                    cover.setY(300);
                 }
 
                 if (change.getMap().get("album") != null) {

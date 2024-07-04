@@ -22,6 +22,7 @@ public class HelloController {
     @FXML
     protected void onHelloButtonClick() {
         title.setText("");
+
         File audioFile = func.fileChooser(false, title.getScene().getWindow());
         if (audioFile != null) {
             func.audioPlayer(audioFile);
