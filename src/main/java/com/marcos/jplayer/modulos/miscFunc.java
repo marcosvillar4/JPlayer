@@ -110,7 +110,7 @@ public class miscFunc {
         }
     }
 
-    public String[] getFolderSongs(File folder){
+    public File[] getFolderSongs(File folder){
         FileFilter Filefilter = new FileFilter()
         {
             public boolean accept(File file) {
@@ -118,8 +118,10 @@ public class miscFunc {
             }
         };
 
-        File[] files = folder.listFiles(Filefilter);
+        return folder.listFiles(Filefilter);
+    }
 
+    public String[] getFolderSongsName(File[] files){
         String[] names = new String[files.length];
 
         for (int i = 0; i < files.length; i++) {

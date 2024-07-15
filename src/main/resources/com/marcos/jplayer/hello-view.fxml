@@ -21,9 +21,11 @@
 
         <ImageView fx:id="cover" fitWidth="200" preserveRatio="true"/>
 
-        <Button text="Load Song" onAction="#onHelloButtonClick"/>
+        <Button text="Load Folder" onAction="#onHelloButtonClick"/>
 
         <Button text="Play/Pause" onAction="#audioPause"/>
+
+        <Button text="Start Song" onAction="#playSelectedSong"/>
 
     </HBox>
 

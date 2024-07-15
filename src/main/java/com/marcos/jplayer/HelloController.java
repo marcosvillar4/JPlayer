@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
-import java.util.Arrays;
+
 
 
 public class HelloController {
@@ -24,6 +24,11 @@ public class HelloController {
     private ImageView cover;
     miscFunc func = new miscFunc();
 
+
+
+
+    public File[] songListFiles;
+
     @FXML
     protected void onHelloButtonClick() {
         title.setText("");
@@ -31,14 +36,26 @@ public class HelloController {
         genSongList();
 
     }
+
     public void audioPause() {
         func.playPause();
     }
 
+    public void playSelectedSong(){
+        if (!songList.getItems().isEmpty()){
+            func.audioPlayer(songListFiles[songList.getSelectionModel().getSelectedIndex()]);
+            func.displayMetadata(cover, title, artist, album);
+        }
+    }
+
     public void genSongList(){
+
         File songFolder = func.fileChooser(true, title.getScene().getWindow());
-        String[] songListNames = func.getFolderSongs(songFolder);
+        songListFiles = func.getFolderSongs(songFolder);
+        String[] songListNames = func.getFolderSongsName(songListFiles);
         ObservableList<String> names= FXCollections.observableArrayList(songListNames);
         songList.setItems(names);
+
+
     }
 }
