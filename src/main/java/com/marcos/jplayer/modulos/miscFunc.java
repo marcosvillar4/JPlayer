@@ -12,6 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
 import java.io.File;
+import java.io.FileFilter;
 
 public class miscFunc {
 
@@ -109,5 +110,21 @@ public class miscFunc {
         }
     }
 
+    public String[] getFolderSongs(File folder){
+        FileFilter Filefilter = new FileFilter()
+        {
+            public boolean accept(File file) {
+                return file.getName().endsWith(".mp3");
+            }
+        };
 
+        File[] files = folder.listFiles(Filefilter);
+
+        String[] names = new String[files.length];
+
+        for (int i = 0; i < files.length; i++) {
+            names[i] = files[i].getName();
+        }
+        return names;
+    }
 }
