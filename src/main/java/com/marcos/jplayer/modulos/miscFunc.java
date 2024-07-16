@@ -111,12 +111,7 @@ public class miscFunc {
     }
 
     public File[] getFolderSongs(File folder){
-        FileFilter Filefilter = new FileFilter()
-        {
-            public boolean accept(File file) {
-                return file.getName().endsWith(".mp3");
-            }
-        };
+        FileFilter Filefilter = file -> file.getName().endsWith(".mp3");
 
         return folder.listFiles(Filefilter);
     }
