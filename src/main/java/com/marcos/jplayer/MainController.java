@@ -13,7 +13,7 @@ import java.io.File;
 
 
 
-public class HelloController {
+public class MainController {
 
 
     public Label artist;
