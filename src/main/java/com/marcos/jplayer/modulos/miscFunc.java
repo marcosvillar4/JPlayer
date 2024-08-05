@@ -22,6 +22,7 @@ public class miscFunc {
     boolean paused;
     boolean fileLoaded;
 
+
     public void audioPlayer(File audioFile){
 
         media = new Media(audioFile.toURI().toString());
@@ -43,29 +44,22 @@ public class miscFunc {
 
     public void displayMetadata(ImageView cover, Label t, Label a, Label album){
         if (media != null){
-
             media.getMetadata().addListener((MapChangeListener<String,Object>) change-> {
-
-
                 if (change.getMap().get("title") != null) {
                     t.setText((String) change.getMap().get("title"));
                 }
                 if (change.getMap().get("artist") != null) {
                     a.setText((String) change.getMap().get("artist"));
                 }
-
                 if (change.getMap().get("image") != null) {
                     cover.setImage((Image) change.getMap().get("image"));
                     cover.setX(300);
                     cover.setY(300);
                 }
-
                 if (change.getMap().get("album") != null) {
                     album.setText((String) change.getMap().get("album"));
                 }
-
                 System.out.println(change);
-
             });
         }
     }
@@ -75,21 +69,16 @@ public class miscFunc {
         if (folder) {
             DirectoryChooser fc = new DirectoryChooser();
             fc.setTitle("Select Audio Directory");
-
             selectedFile = fc.showDialog(parent);
             if (selectedFile == null) {
                 System.out.println("Directorio no valido");
             }
         }
         else {
-
-
-
             FileChooser fc = new FileChooser();
             fc.setTitle("Select Audio File");
             fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Music Files","*.mp3"));
             selectedFile = fc.showOpenDialog(parent);
-
             if (selectedFile == null) {
                 System.out.println("Archivo audio no valido");
             }
@@ -98,30 +87,34 @@ public class miscFunc {
     }
 
     public void playPause(){
-        if (!paused){
-            mediaPlayer.pause();
-            paused = true;
-        }
-        else{
-            mediaPlayer.play();
-            paused = false;
-
-
+        if (mediaPlayer != null) {
+            if (!paused){
+                mediaPlayer.pause();
+                paused = true;
+            }
+            else{
+                mediaPlayer.play();
+                paused = false;
+            }
         }
     }
 
     public File[] getFolderSongs(File folder){
         FileFilter Filefilter = file -> file.getName().endsWith(".mp3");
-
         return folder.listFiles(Filefilter);
     }
 
     public String[] getFolderSongsName(File[] files){
         String[] names = new String[files.length];
-
         for (int i = 0; i < files.length; i++) {
             names[i] = files[i].getName();
         }
         return names;
+    }
+
+    public void setVolume(double volume) {
+        if (mediaPlayer != null) {
+            mediaPlayer.setVolume(volume / 100);
+        }
     }
 }

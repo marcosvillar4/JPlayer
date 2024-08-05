@@ -14,13 +14,13 @@
     </padding>
 
 
-    <ListView fx:id="songList" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" GridPane.hgrow="ALWAYS" GridPane.columnSpan="3"/>
+    <ListView fx:id="songList" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" GridPane.hgrow="ALWAYS" GridPane.columnSpan="3" />
 
     <HBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.hgrow="NEVER">
 
         <GridPane hgap="10" alignment="CENTER" >
 
-            <Button text="Load Folder" onAction="#onHelloButtonClick" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM"/>
+            <Button text="Load Folder" onAction="#onLoadButtonClick" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM"/>
 
             <Button text="Play/Pause" onAction="#audioPause" GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.valignment="BOTTOM"/>
 
@@ -50,7 +50,7 @@
 
             <ToggleButton text = "ph2" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-            <Slider GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <Slider onMouseDragged="#setAudioVolume" onMouseClicked="#setAudioVolume" GridPane.columnIndex="2" GridPane.rowIndex="0" value="100" fx:id="audioVolume" showTickMarks="true" showTickLabels="true"/>
 
         </GridPane>
 

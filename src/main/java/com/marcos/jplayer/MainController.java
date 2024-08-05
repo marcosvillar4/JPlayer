@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import com.marcos.jplayer.modulos.miscFunc;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
@@ -22,15 +23,16 @@ public class MainController {
     public ListView<String> songList;
     @FXML
     private ImageView cover;
-    miscFunc func = new miscFunc();
+    public Slider audioVolume;
 
+    miscFunc func = new miscFunc();
 
 
 
     public File[] songListFiles;
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onLoadButtonClick() {
         title.setText("");
 
         genSongList();
@@ -57,5 +59,10 @@ public class MainController {
         songList.setItems(names);
 
 
+    }
+
+    public void setAudioVolume(){
+        System.out.println(audioVolume.valueProperty().get() / 100);
+        func.setVolume(audioVolume.valueProperty().get());
     }
 }
