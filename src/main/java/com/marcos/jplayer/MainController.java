@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 
 import java.io.File;
 
@@ -32,32 +33,35 @@ public class MainController {
 
     @FXML
     protected void onLoadButtonClick() {
-        title.setText("");
-
         genSongList();
-
+        songList.setOnMouseClicked(mouseClickedEvent -> {
+            if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
+                playSelectedSong();
+            }
+        });
     }
 
     public void audioPause() {
-        func.playPause();
+        if (func.isAlive()) {
+            func.playPause();
+        } else {
+            playSelectedSong();
+        }
     }
 
-    public void playSelectedSong(){
+    void playSelectedSong(){
         if (!songList.getItems().isEmpty()){
             func.setMediaUI(cover, title, artist, album);
             func.GenerateQueue(songListFiles, songList.getSelectionModel().getSelectedIndex());
         }
     }
 
-    public void genSongList(){
-
+    void genSongList(){
         File songFolder = func.fileChooser(true, title.getScene().getWindow());
         songListFiles = func.getFolderSongs(songFolder);
         String[] songListNames = func.getFolderSongsName(songListFiles);
         ObservableList<String> names= FXCollections.observableArrayList(songListNames);
         songList.setItems(names);
-
-
     }
 
     public void setAudioVolume(){

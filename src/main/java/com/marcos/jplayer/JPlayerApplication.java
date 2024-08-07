@@ -12,7 +12,6 @@ public class JPlayerApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(JPlayerApplication.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-
         stage.setTitle("JPlayer");
         stage.setScene(scene);
         stage.show();

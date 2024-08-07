@@ -184,4 +184,9 @@ public class miscFunc {
         this.a = a;
         this.album = album;
     }
+
+    public boolean isAlive(){
+        return (mediaPlayer!=null);
+    }
+
 }
