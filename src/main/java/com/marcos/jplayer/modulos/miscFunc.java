@@ -30,6 +30,7 @@ public class miscFunc {
     Label t;
     Label a;
     Label album;
+    Label bullet;
 
     public void audioPlayer(File audioFile){
 
@@ -53,9 +54,13 @@ public class miscFunc {
             media.getMetadata().addListener((MapChangeListener<String,Object>) change-> {
                 if (change.getMap().get("title") != null) {
                     t.setText((String) change.getMap().get("title"));
+                } else {
+                    t.setText("");
                 }
                 if (change.getMap().get("artist") != null) {
                     a.setText((String) change.getMap().get("artist"));
+                } else {
+                    a.setText("");
                 }
                 if (change.getMap().get("image") != null) {
                     cover.setImage((Image) change.getMap().get("image"));
@@ -63,7 +68,9 @@ public class miscFunc {
                     cover.setY(300);
                 }
                 if (change.getMap().get("album") != null) {
-                    album.setText((String) change.getMap().get("album"));
+                    album.setText(change.getMap().get("album") + " • ");
+                } else {
+                    album.setText("");
                 }
                 System.out.println(change);
             });

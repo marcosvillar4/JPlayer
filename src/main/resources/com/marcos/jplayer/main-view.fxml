@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.VBox?>
 <GridPane alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="com.marcos.jplayer.MainController" vgap="20" hgap="20" gridLinesVisible="true">
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
@@ -15,6 +16,7 @@
 
 
     <ListView fx:id="songList" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" GridPane.hgrow="ALWAYS" GridPane.columnSpan="3" />
+
 
     <HBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.hgrow="NEVER">
 
@@ -34,11 +36,14 @@
 
         <ImageView fx:id="cover" fitHeight="50" preserveRatio="true" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
 
-        <HBox spacing="10" alignment="CENTER">
+        <VBox spacing="10" alignment="CENTER_LEFT">
             <Label fx:id="title"/>
-            <Label fx:id="album"/>
-            <Label fx:id="artist"/>
-        </HBox>
+            <HBox>
+                <Label fx:id="album"/>
+
+                <Label fx:id="artist"/>
+            </HBox>
+        </VBox>
 
     </HBox>
 
