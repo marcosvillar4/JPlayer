@@ -30,7 +30,6 @@ public class miscFunc {
     Label t;
     Label a;
     Label album;
-    Label bullet;
 
     public void audioPlayer(File audioFile){
 
