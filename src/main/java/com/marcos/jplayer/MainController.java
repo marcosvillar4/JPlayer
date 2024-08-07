@@ -1,11 +1,11 @@
 package com.marcos.jplayer;
 
 
+import com.marcos.jplayer.modulos.miscFunc;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import com.marcos.jplayer.modulos.miscFunc;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
@@ -28,7 +28,6 @@ public class MainController {
     miscFunc func = new miscFunc();
 
 
-
     public File[] songListFiles;
 
     @FXML
@@ -45,8 +44,9 @@ public class MainController {
 
     public void playSelectedSong(){
         if (!songList.getItems().isEmpty()){
-            func.audioPlayer(songListFiles[songList.getSelectionModel().getSelectedIndex()]);
+            //func.audioPlayer();
             func.displayMetadata(cover, title, artist, album);
+            func.GenerateQueue(songListFiles, songList.getSelectionModel().getSelectedIndex());
         }
     }
 
@@ -65,4 +65,13 @@ public class MainController {
         System.out.println(audioVolume.valueProperty().get() / 100);
         func.setVolume(audioVolume.valueProperty().get());
     }
+
+    public void enableLoop(){
+        func.enableLoop();
+    }
+
+    public void skipSong(){
+        func.skipSong();
+    }
+
 }

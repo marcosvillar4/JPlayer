@@ -10,9 +10,11 @@ import javafx.scene.media.MediaView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.util.Arrays;
 
 public class miscFunc {
 
@@ -20,8 +22,10 @@ public class miscFunc {
     MediaView mediaView;
     Media media;
     boolean paused;
-    boolean fileLoaded;
-
+    double MediaVolume = 50;
+    boolean loop = true;
+    File[] Songs;
+    int SongIndex;
 
     public void audioPlayer(File audioFile){
 
@@ -32,8 +36,6 @@ public class miscFunc {
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.play();
         paused = false;
-        fileLoaded = true;
-
     }
 
     public void killAudio(){
@@ -114,7 +116,55 @@ public class miscFunc {
 
     public void setVolume(double volume) {
         if (mediaPlayer != null) {
+            MediaVolume = volume;
             mediaPlayer.setVolume(volume / 100);
+        }
+    }
+
+
+    public void GenerateQueue(File[] SongList, int index){
+        Songs = SongList.clone();
+        SongIndex = index;
+        System.out.println(Arrays.toString(Songs));
+        playQueue();
+    }
+
+    public void playQueue(){
+        System.out.println(Songs[SongIndex]);
+
+        System.out.println(MediaVolume);
+        audioPlayer(Songs[SongIndex]);
+        setVolume(MediaVolume);
+        mediaPlayer.setOnEndOfMedia(this::playNext);
+    }
+
+    void playNext(){
+        mediaPlayer.seek(Duration.ONE);
+        if (SongIndex < Songs.length - 1){
+            System.out.println("1");
+            SongIndex++;
+            playQueue();
+        } else if (SongIndex == Songs.length - 1 && loop) {
+            System.out.println("2");
+            SongIndex = 0;
+            playQueue();
+        }
+        else {
+            System.out.println("3");
+            killAudio();
+        }
+
+
+    }
+
+    public void enableLoop(){
+        loop = !loop;
+        System.out.println("loop: " + loop);
+    }
+
+    public void skipSong(){
+        if (mediaPlayer != null){
+            mediaPlayer.seek(Duration.INDEFINITE);
         }
     }
 }

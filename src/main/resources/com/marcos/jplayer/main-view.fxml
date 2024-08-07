@@ -46,11 +46,11 @@
 
         <GridPane alignment="CENTER" hgap="10">
 
-            <ToggleButton text = "ph1" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ToggleButton  text = "Loop" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#enableLoop"/>
 
-            <ToggleButton text = "ph2" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <ToggleButton text = "Skip" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#skipSong"/>
 
-            <Slider onMouseDragged="#setAudioVolume" onMouseClicked="#setAudioVolume" GridPane.columnIndex="2" GridPane.rowIndex="0" value="100" fx:id="audioVolume" showTickMarks="true" showTickLabels="true"/>
+            <Slider onMouseDragged="#setAudioVolume" onMouseClicked="#setAudioVolume" GridPane.columnIndex="2" GridPane.rowIndex="0" value="50" fx:id="audioVolume" showTickMarks="true" showTickLabels="true"/>
 
         </GridPane>
 
