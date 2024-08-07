@@ -44,8 +44,7 @@ public class MainController {
 
     public void playSelectedSong(){
         if (!songList.getItems().isEmpty()){
-            //func.audioPlayer();
-            func.displayMetadata(cover, title, artist, album);
+            func.setMediaUI(cover, title, artist, album);
             func.GenerateQueue(songListFiles, songList.getSelectionModel().getSelectedIndex());
         }
     }

@@ -26,6 +26,10 @@ public class miscFunc {
     boolean loop = true;
     File[] Songs;
     int SongIndex;
+    ImageView cover;
+    Label t;
+    Label a;
+    Label album;
 
     public void audioPlayer(File audioFile){
 
@@ -38,13 +42,13 @@ public class miscFunc {
         paused = false;
     }
 
-    public void killAudio(){
+    void killAudio(){
         if (this.mediaPlayer != null){
             mediaPlayer.dispose();
         }
     }
 
-    public void displayMetadata(ImageView cover, Label t, Label a, Label album){
+    void displayMetadata(){
         if (media != null){
             media.getMetadata().addListener((MapChangeListener<String,Object>) change-> {
                 if (change.getMap().get("title") != null) {
@@ -129,12 +133,12 @@ public class miscFunc {
         playQueue();
     }
 
-    public void playQueue(){
+    void playQueue(){
         System.out.println(Songs[SongIndex]);
-
         System.out.println(MediaVolume);
         audioPlayer(Songs[SongIndex]);
         setVolume(MediaVolume);
+        displayMetadata();
         mediaPlayer.setOnEndOfMedia(this::playNext);
     }
 
@@ -166,5 +170,12 @@ public class miscFunc {
         if (mediaPlayer != null){
             mediaPlayer.seek(Duration.INDEFINITE);
         }
+    }
+
+    public void setMediaUI(ImageView cover, Label t, Label a, Label album){
+        this.cover = cover;
+        this.t = t;
+        this.a = a;
+        this.album = album;
     }
 }
