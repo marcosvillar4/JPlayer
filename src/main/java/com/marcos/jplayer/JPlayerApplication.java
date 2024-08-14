@@ -13,6 +13,7 @@ public class JPlayerApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(JPlayerApplication.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("JPlayer");
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
