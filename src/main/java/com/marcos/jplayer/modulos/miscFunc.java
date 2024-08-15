@@ -167,6 +167,8 @@ public class miscFunc {
 
     }
 
+
+
     public void enableLoop(){
         loop = !loop;
         System.out.println("loop: " + loop);
@@ -175,6 +177,18 @@ public class miscFunc {
     public void skipSong(){
         if (mediaPlayer != null){
             mediaPlayer.seek(Duration.INDEFINITE);
+        }
+    }
+
+    public void prevSong(){
+        if (mediaPlayer != null){
+            if (mediaPlayer.getCurrentTime().toSeconds() < Duration.seconds(5).toSeconds()){
+                SongIndex--;
+                playQueue();
+            }
+            else {
+                mediaPlayer.seek(Duration.ONE);
+            }
         }
     }
 
