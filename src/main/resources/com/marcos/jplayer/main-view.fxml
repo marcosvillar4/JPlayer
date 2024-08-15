@@ -21,8 +21,9 @@
     <HBox GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="2">
 
         <GridPane alignment="CENTER" hgap="10">
-
-            <Button onAction="#audioPause" text="Play/Pause" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
+            <ToggleButton onAction="#prevSong" text="<<" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Button onAction="#audioPause" text="Play/Pause" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
+            <ToggleButton onAction="#skipSong" text=">>" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
         </GridPane>
 
@@ -49,7 +50,6 @@
 
             <ToggleButton onAction="#enableLoop" text="Loop" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-            <ToggleButton onAction="#skipSong" text="Skip" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
             <Slider fx:id="audioVolume" onMouseClicked="#setAudioVolume" onMouseDragged="#setAudioVolume" showTickLabels="true" showTickMarks="true" value="50" GridPane.columnIndex="2" GridPane.rowIndex="0" />
          <columnConstraints>

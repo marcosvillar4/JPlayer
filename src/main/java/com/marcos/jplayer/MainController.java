@@ -77,4 +77,8 @@ public class MainController {
         func.skipSong();
     }
 
+    public void prevSong(){
+        func.prevSong();
+    }
+
 }
