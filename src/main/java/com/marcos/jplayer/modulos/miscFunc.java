@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
+
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -19,7 +19,6 @@ import java.util.Arrays;
 public class miscFunc {
 
     MediaPlayer mediaPlayer;
-    MediaView mediaView;
     Media media;
     boolean paused;
     double MediaVolume = 50;
@@ -36,7 +35,6 @@ public class miscFunc {
         media = new Media(audioFile.toURI().toString());
         killAudio();
         mediaPlayer = new MediaPlayer(media);
-        mediaView = new MediaView();
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.play();
         paused = false;
@@ -203,4 +201,7 @@ public class miscFunc {
         return (mediaPlayer!=null);
     }
 
+    public boolean isPaused() {
+        return paused;
+    }
 }

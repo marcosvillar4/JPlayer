@@ -5,6 +5,7 @@ import com.marcos.jplayer.modulos.miscFunc;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
@@ -25,6 +26,7 @@ public class MainController {
     @FXML
     private ImageView cover;
     public Slider audioVolume;
+    public Button pause;
 
     miscFunc func = new miscFunc();
 
@@ -43,6 +45,11 @@ public class MainController {
 
     public void audioPause() {
         if (func.isAlive()) {
+            if (func.isPaused()){
+                pause.setText("||");
+            } else {
+                pause.setText("▶");
+            }
             func.playPause();
         } else {
             playSelectedSong();
